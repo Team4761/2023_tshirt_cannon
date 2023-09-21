@@ -10,6 +10,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+
 import org.robockets.commands.DriveGo;
 import org.robockets.subsystems.Barrel;
 import org.robockets.subsystems.Drivetrain;
@@ -111,18 +113,56 @@ public class Robot extends TimedRobot
     /** This method is called once when teleop is enabled. */
     @Override
     public void teleopInit() {
-        new DriveGo();
+        
     }
     
-    
+    double speedMultiplier = 0.5;
+    double trans;
+    double rot;
+    double strafe;
+
     /** This method is called periodically during operator control. */
+
+    boolean aPressed;
+    boolean yPressed;
+    double barrelSpeed = 0.2;
+
     @Override
-    public void teleopPeriodic() {}
+    public void teleopPeriodic() {
+        if (OI.joystick.getRawButtonReleased(4)) {
+            yPressed = false;
+        }
+        if (OI.joystick.getRawButtonReleased(1)) {
+            aPressed = false;
+        }
+        if (OI.joystick.getRawButtonPressed(4)) {
+            yPressed = true;
+        }
+        if (OI.joystick.getRawButtonPressed(1)) {
+            aPressed = true;
+        }
+
+
+        if (yPressed) {
+            RobotMap.barrelAngleMotor.set(barrelSpeed);
+        } else if (aPressed) {
+            RobotMap.barrelAngleMotor.set(-barrelSpeed);
+        } else {
+            RobotMap.barrelAngleMotor.set(0);
+        }
+
+        trans = OI.joystick.getRawAxis(4);
+        rot = OI.joystick.getRawAxis(1);
+        strafe = 0;//OI.joystick.getRawAxis(0);
+        RobotMap.robotDrive.driveCartesian(trans, strafe, rot);
+    }
     
     
     /** This method is called once when the robot is disabled. */
     @Override
-    public void disabledInit() {}
+    public void disabledInit() {
+        RobotMap.robotDrive.driveCartesian(0,0,0);
+    }
     
     
     /** This method is called periodically when disabled. */

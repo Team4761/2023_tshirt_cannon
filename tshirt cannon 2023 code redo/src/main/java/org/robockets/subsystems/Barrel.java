@@ -40,11 +40,13 @@ public class Barrel extends SubsystemBase {
         //       such as SpeedControllers, Encoders, DigitalInputs, etc.
     }
 
+    public static double barrelSpeed = 0.2;
+
     public static void rotate(xDirection direction){
         if(direction == xDirection.LEFT){
-            RobotMap.barrelRotationMotor.set(0.7);
+            RobotMap.barrelRotationMotor.set(barrelSpeed);
         }else if (direction == xDirection.RIGHT){
-            RobotMap.barrelRotationMotor.set(-0.7);
+            RobotMap.barrelRotationMotor.set(-barrelSpeed);
         }else{
             RobotMap.barrelRotationMotor.set(0);
         }

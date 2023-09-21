@@ -1,6 +1,7 @@
 package org.robockets.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import org.robockets.Robot;
 import org.robockets.RobotMap;
 import org.robockets.zDirection;
@@ -19,22 +20,22 @@ public class AjustShooterAngle extends CommandBase {
 
     @Override
     public void initialize() {
-
+        Robot.shooter.changeAngle(direction);
     }
 
     @Override
     public void execute() {
-        Robot.shooter.changeAngle(direction);
+        
     }
 
     @Override
     public boolean isFinished() {
         // TODO: Make this return true when this Command no longer needs to run execute()
-        return false;
+        return true;
     }
 
     @Override
     public void end(boolean interrupted) {
-        RobotMap.barrelAngleMotor.set(0);
+        
     }
 }

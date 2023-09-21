@@ -1,6 +1,7 @@
 package org.robockets.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 
 
 public class Wait extends CommandBase {
@@ -13,11 +14,12 @@ public class Wait extends CommandBase {
 
     @Override
     public void initialize() {
-        try {
-            wait(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        //try {
+            //wait(100); //DEPRECATED
+            new WaitCommand(0.1);
+        //} catch (InterruptedException e) {
+        //    e.printStackTrace();
+        //}
     }
 
     @Override

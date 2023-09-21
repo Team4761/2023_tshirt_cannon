@@ -43,21 +43,26 @@ public class Shooter extends SubsystemBase {
 
     public void shoot(Solenoid solenoid){
         solenoid.set(true);
+        System.out.println("Shot method called...");
     }
 
     public void changeAngle(zDirection direction){
         if(direction == zDirection.UP){
-            RobotMap.barrelAngleMotor.set(-0.5);
-        }else if(direction == zDirection.DOWN){
+            System.out.println("UP!");
             RobotMap.barrelAngleMotor.set(0.5);
+        }else if(direction == zDirection.DOWN){
+            System.out.println("DOWN!");
+            RobotMap.barrelAngleMotor.set(-0.5);
         }else{
+            System.out.println("running");
             RobotMap.barrelAngleMotor.set(0);
         }
     }
 
     public void stop(Solenoid solenoid){
         solenoid.set(false);
-        RobotMap.barrelAngleMotor.set(0);
+        System.out.println("Solenoid closed...");
+        //RobotMap.barrelAngleMotor.set(0);
     }
 }
 

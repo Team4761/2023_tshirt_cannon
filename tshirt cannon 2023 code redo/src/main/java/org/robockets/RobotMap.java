@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.motorcontrol.Victor;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 
 public class RobotMap {
 
@@ -28,10 +29,10 @@ public class RobotMap {
 
     //Solenoid
     //TODO Fix! may not work i have no idea what "Module type" is
-    public static Solenoid solenoid = new Solenoid(null, 0);
+    public static Solenoid solenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 0);
 
     //limit switch
-    public static DigitalInput barrelLimitSwitch = new DigitalInput(4);
+    public static DigitalInput barrelLimitSwitch = new DigitalInput(3);
 
 
 
