@@ -16,7 +16,7 @@ import org.robockets.commands.DriveGo;
 import org.robockets.subsystems.Barrel;
 import org.robockets.subsystems.Drivetrain;
 import org.robockets.subsystems.Shooter;
-
+import edu.wpi.first.cameraserver.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the methods corresponding to
@@ -56,7 +56,8 @@ public class Robot extends TimedRobot
         drivetrain = new Drivetrain();
         barrel = new Barrel();
         //drivego = new DriveGo();
-
+        
+        CameraServer.startAutomaticCapture();
     }
     
     
@@ -129,6 +130,7 @@ public class Robot extends TimedRobot
 
     @Override
     public void teleopPeriodic() {
+
         if (OI.joystick.getRawButtonReleased(4)) {
             yPressed = false;
         }
